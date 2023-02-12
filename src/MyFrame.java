@@ -16,6 +16,8 @@ public class MyFrame extends JFrame implements ActionListener {
 
     JMenuItem barItem;
 
+    JButton button;
+
     MyFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,500);
@@ -26,6 +28,9 @@ public class MyFrame extends JFrame implements ActionListener {
         fileMenu = new JMenu("File");
         editMenu = new JMenu("edit");
         helpMenu = new JMenu("help");
+
+        button = new JButton("Get_Progress");
+        button.addActionListener(this);
 
         loadItem = new JMenuItem("Load");
         saveItem = new JMenuItem("Save");
@@ -54,10 +59,10 @@ public class MyFrame extends JFrame implements ActionListener {
         menuBar.add(editMenu);
         menuBar.add(helpMenu);
 
-        new ProgressBar();
 
 
         this.setJMenuBar(menuBar);
+        this.add(button);
         this.setVisible(true);
     }
 
@@ -75,6 +80,11 @@ public class MyFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == exitItem) {
             System.exit(0);
+        }
+
+        button.setEnabled(false);
+        if(e.getSource() == button) {
+            new ProgressBar();
         }
 
     }
